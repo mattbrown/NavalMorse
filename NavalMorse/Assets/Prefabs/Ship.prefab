@@ -11,31 +11,16 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1000013134126456}
   m_IsPrefabParent: 1
---- !u!1 &1000010035556750
+--- !u!1 &1000012768193306
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 4000012331267632}
+  - 4: {fileID: 4000010634324790}
   m_Layer: 0
-  m_Name: starboard
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1000012768137604
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 4000010673078296}
-  m_Layer: 0
-  m_Name: port
+  m_Name: shotspawn2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,22 +39,37 @@ GameObject:
   - 61: {fileID: 61000012444716718}
   - 114: {fileID: 114000011259166766}
   m_Layer: 0
-  m_Name: prt_player
+  m_Name: Ship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4000010673078296
+--- !u!1 &1000013749186470
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000012270991204}
+  m_Layer: 0
+  m_Name: shotspawn1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4000010634324790
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012768137604}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_GameObject: {fileID: 1000012768193306}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.286, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000011295394508}
   m_RootOrder: 1
@@ -84,20 +84,20 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 4000012331267632}
-  - {fileID: 4000010673078296}
+  - {fileID: 4000012270991204}
+  - {fileID: 4000010634324790}
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!4 &4000012331267632
+--- !u!4 &4000012270991204
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010035556750}
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_GameObject: {fileID: 1000013749186470}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.286, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000011295394508}
   m_RootOrder: 0
@@ -109,8 +109,8 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013134126456}
   m_UseAutoMass: 0
-  m_Mass: 100
-  m_LinearDrag: 0
+  m_Mass: 10
+  m_LinearDrag: 1
   m_AngularDrag: 30
   m_GravityScale: 1
   m_IsKinematic: 0
@@ -143,10 +143,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30a3897da1e4e57478b8a68bbc2149f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnLength: 50
-  acceleration: 100
-  maxSpeed: 10
-  rotationSpeed: 100
+  shot: {fileID: 1000011842148614, guid: fd118351e6a54984fa7977402628818a, type: 2}
+  shotScript: {fileID: 114000010340468418, guid: fd118351e6a54984fa7977402628818a,
+    type: 2}
+  health: 50
+  minSpeed: 100
+  medSpeed: 75
+  maxSpeed: 100
+  rotationalSpeed: 0.5
+  shotSpawn1: {fileID: 4000012270991204}
+  shotSpawn2: {fileID: 4000010634324790}
 --- !u!212 &212000011273531170
 SpriteRenderer:
   m_ObjectHideFlags: 1
