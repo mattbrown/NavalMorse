@@ -33,7 +33,7 @@ public class ShipController : MonoBehaviour {
 		}
 
 		if(Input.GetKeyDown("down")){ //anything bigger than 180 it takes the long way around. Get Dom to fix
-			turnByDegrees(270f);
+			turnByDegrees(-90f);
 		}
 
 		if(Input.GetKeyDown("left")){
@@ -51,6 +51,8 @@ public class ShipController : MonoBehaviour {
 		if (health <= 0){
 			deathSequence();
 		}
+
+        Debug.Log(health);
 	}
 
 	void FixedUpdate () { //fixed update is for physics calculations
@@ -67,8 +69,8 @@ public class ShipController : MonoBehaviour {
 	     {
 			if (Vector3.Distance(transform.eulerAngles, turnAngle) > 0.1f)
 	         {
-				transform.eulerAngles = Vector3.Lerp(transform.rotation.eulerAngles, turnAngle, Time.deltaTime);
-	         }
+                transform.eulerAngles = Vector3.Lerp(transform.rotation.eulerAngles, turnAngle, Time.deltaTime);
+            }
 	         else
 	         {
 				transform.eulerAngles = turnAngle;
@@ -111,8 +113,10 @@ public class ShipController : MonoBehaviour {
 			Instantiate(shot, shotSpawn2.position, rotation);
 			shotSpawnToggle = true;
 		}
-		
-	}
+
+        health += shotScript.damage; //fixes damage to self
+
+    }
 
 	void deathSequence(){
 		//will late impliment: instanciate explosion animation and destroyed ship prefab
