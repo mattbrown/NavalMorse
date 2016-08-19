@@ -52,7 +52,6 @@ public class ShipController : MonoBehaviour {
 			deathSequence();
 		}
 
-        Debug.Log(health);
 	}
 
 	void FixedUpdate () { //fixed update is for physics calculations
